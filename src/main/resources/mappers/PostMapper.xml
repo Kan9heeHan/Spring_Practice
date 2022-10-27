@@ -14,19 +14,19 @@
         modified_date
     </sql>
 
-    <insert id="save" parameterType="practice.spring_mysql.domain.post.PostRequest">
+    <insert id="save" parameterType="practice.spring_mysql.domain.post.PostRequest" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO board (
-        <include refid="postColumns" />
+            <include refid="postColumns"/>
         ) VALUES (
-        #{id}
-        , #{title}
-        , #{content}
-        , #{writer}
-        , 0
-        , #{notice_boolean}
-        , 0
-        , NOW()
-        , NULL
+            #{id}
+            , #{title}
+            , #{content}
+            , #{writer}
+            , 0
+            , #{notice_boolean}
+            , 0
+            , NOW()
+            , NULL
         )
     </insert>
 
@@ -46,7 +46,7 @@
             , title = #{title}
             , content = #{content}
             , writer = #{writer}
-            , notice_yn = #{notice_boolean}
+            , notice_boolean = #{notice_boolean}
         WHERE
             id = #{id}
     </update>
@@ -61,7 +61,7 @@
 
     <select id="findAll" resultType="practice.spring_mysql.domain.post.PostResponse">
         SELECT
-        <include refid="postColumns" />
+            <include refid="postColumns" />
         FROM
             board
         WHERE
