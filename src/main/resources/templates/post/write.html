@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/basic">
 <th:block layout:fragment="title">
-    <title>글작성 페이지</title>
+    <title>글 작성 페이지</title>
 </th:block>
-
 <th:block layout:fragment="content">
     <div class="card-content">
         <form id="saveForm" class="form-horizontal" method="post" autocomplete="off">
-            <!--/* 기존 게시글 수정인 경우, 서버로 전달할 게시글 번호(id) */-->
             <input type="hidden" id="id" name="id" th:if="${post != null}" th:value="${post.id}" />
 
-            <!--/* 서버로 전달할 공지 여부 */-->
             <input type="hidden" id="notice_boolean" name="notice_boolean" />
 
             <div class="form-group">
