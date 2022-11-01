@@ -23,20 +23,6 @@ public class PostController {
     }
 
     @PostMapping("/post/save.do")
-    window.onload = () => {
-        renderPostInfo();
-    }
-    function renderPostInfo(){
-        const post=[[${post}]];
-        if(!post){return false;}
-        const form = document.getElementById('saveForm');
-        const fields = ['id', 'title', 'content', 'writer', 'noticeYn'];
-        form.isNotice.checked = post.noticeYn;
-
-        fields.forEach(field => {
-                form[field].value = post[field];
-        })
-    }
     public String savePost(final PostRequest params){
         postService.savePost(params);
         return "redirect:/post/list.do";
@@ -54,5 +40,11 @@ public class PostController {
         PostResponse post= postService.findPostById(id);
         model.addAttribute("post",post);
         return "post/view";
+    }
+
+    @PostMapping("/post/update.do")
+    public String updatePost(final PostRequest params){
+        postService.updatePost(params);
+        return "redirect:/post/list.do";
     }
 }

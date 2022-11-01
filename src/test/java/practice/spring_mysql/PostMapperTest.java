@@ -19,8 +19,8 @@ public class PostMapperTest {
     @Test
     void save(){
         PostRequest params=new PostRequest();
-        params.setTitle("1번 게시글");
-        params.setContent("1번 게시글 내용");
+        params.setTitle("2번 게시글");
+        params.setContent("2번 게시글 내용");
         params.setWriter("ㅇㅇ");
         params.setNotice_boolean(false);
         postMapper.save(params);
@@ -30,12 +30,13 @@ public class PostMapperTest {
     }
 
     @Test
-    void findById(){
-        PostResponse post=postMapper.findById(1L);
-        try{
-            String postJson=new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(post);
+    void findById() {
+        PostResponse post = postMapper.findById(1L);
+        try {
+            String postJson = new ObjectMapper().registerModule(new JavaTimeModule()).writeValueAsString(post);
             System.out.println(postJson);
-        }catch(JsonProcessingException e){
+
+        } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
@@ -43,11 +44,11 @@ public class PostMapperTest {
     @Test
     void update() {
         PostRequest params=new PostRequest();
-        params.setId(1L);
-        params.setTitle("수정된 1번 게시글");
-        params.setContent("수정된 1번 게시글 내용");
-        params.setWriter("매니저");
-        params.setNotice_boolean(true);
+        params.setId(5L);
+        params.setTitle("수정된 2번 게시글");
+        params.setContent("수정된 2번 게시글 내용");
+        params.setWriter("유동닉");
+        params.setNotice_boolean(false);
         postMapper.update(params);
 
         PostResponse post=postMapper.findById(1L);
